@@ -1,0 +1,20 @@
+# Build artifacts
+bin/
+*.exe
+*.test
+vendor/
+coverage.out
+/onboarding-kyc
+
+# Env & secrets
+.env
+*.log
+
+# Git & metadata
+.git/
+.gitignore
+.github/
+README.md
+
+# OS noise
+.DS_Store
