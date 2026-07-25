@@ -194,7 +194,7 @@ func (d *DocumentStore) HasRequiredDocs(appID string) bool {
 	defer d.mu.Unlock()
 	var hasID, hasSelfie bool
 	for _, doc := range d.docs[appID] {
-		switch doc.Type {
+		switch strings.ToUpper(doc.Type) {
 		case "ID_FRONT":
 			hasID = true
 		case "SELFIE":
@@ -549,6 +549,12 @@ var validDocTypes = map[string]bool{
 	"POA":      true,
 }
 
+// isvalidDocType reports whether docType is a recognized document type,
+// accepting either casing.
+func isValidDocType(docType string) bool {
+	return validDocTypes[strings.ToUpper(docType)]
+}
+
 type uploadDocJSONRequest struct {
 	Type    string `json:"type"`
 	Content string `json:"content"`
@@ -567,7 +573,7 @@ func uploadDocumentHandler(s *Services) http.HandlerFunc {
 			writeError(w, r, perr)
 			return
 		}
-		if !validDocTypes[docType] {
+		if !isValidDocType(docType) {
 			writeError(w, r, errBadDocType)
 			return
 		}
@@ -584,7 +590,7 @@ func uploadDocumentHandler(s *Services) http.HandlerFunc {
 		globalMetrics.uploadDocTotal.Add(1)
 		if s.Vendor != nil && app.VendorApplicantID != "" {
 			if vdocID, vErr := s.Vendor.UploadDocument(r.Context(), app.VendorApplicantID, VendorDocument{
-				Type:    docType,
+				Type:    strings.ToUpper(docType),
 				Content: content,
 			}); vErr == nil {
 				globalMetrics.vendorCallsTotal.Add(1)
