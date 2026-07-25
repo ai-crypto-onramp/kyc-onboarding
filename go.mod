@@ -1,4 +1,4 @@
-module github.com/ai-crypto-onramp/onboarding-kyc
+module github.com/ai-crypto-onramp/kyc-onboarding
 
 go 1.25.0
 

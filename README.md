@@ -1,7 +1,7 @@
 # Onboarding / KYC
 
-![CI](https://github.com/ai-crypto-onramp/onboarding-kyc/actions/workflows/ci.yml/badge.svg)
-[![codecov](https://codecov.io/gh/ai-crypto-onramp/onboarding-kyc/branch/main/graph/badge.svg)](https://codecov.io/gh/ai-crypto-onramp/onboarding-kyc)
+![CI](https://github.com/ai-crypto-onramp/kyc-onboarding/actions/workflows/ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/ai-crypto-onramp/kyc-onboarding/branch/main/graph/badge.svg)](https://codecov.io/gh/ai-crypto-onramp/kyc-onboarding)
 
 Go service that orchestrates identity verification (document + liveness), sanctions/PEP screening, and KYC decisioning at signup, feeding results downstream to the Policy/Risk Engine.
 

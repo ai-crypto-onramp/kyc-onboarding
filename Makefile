@@ -16,10 +16,10 @@ cover: test
 	go tool cover -func=coverage.out | tail -1
 
 docker-build:
-	docker build -t ai-crypto-onramp/onboarding-kyc .
+	docker build -t ai-crypto-onramp/kyc-onboarding .
 
 docker-run:
-	docker run --rm -p 8080:8080 ai-crypto-onramp/onboarding-kyc
+	docker run --rm -p 8080:8080 ai-crypto-onramp/kyc-onboarding
 
 migrate-up:
 	go run ./cmd/migrate --up

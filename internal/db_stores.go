@@ -9,7 +9,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/ai-crypto-onramp/onboarding-kyc/db"
+	"github.com/ai-crypto-onramp/kyc-onboarding/db"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )

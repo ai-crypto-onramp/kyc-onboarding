@@ -13,7 +13,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/ai-crypto-onramp/onboarding-kyc/db"
+	"github.com/ai-crypto-onramp/kyc-onboarding/db"
 )
 
 func main() {
