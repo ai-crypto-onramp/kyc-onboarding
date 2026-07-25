@@ -577,6 +577,7 @@ func uploadDocumentHandler(s *Services) http.HandlerFunc {
 			writeError(w, r, errBadDocType)
 			return
 		}
+		docType = strings.ToUpper(docType)
 		now := time.Now()
 		doc := Document{
 			ID:             newUUID(),
@@ -590,7 +591,7 @@ func uploadDocumentHandler(s *Services) http.HandlerFunc {
 		globalMetrics.uploadDocTotal.Add(1)
 		if s.Vendor != nil && app.VendorApplicantID != "" {
 			if vdocID, vErr := s.Vendor.UploadDocument(r.Context(), app.VendorApplicantID, VendorDocument{
-				Type:    strings.ToUpper(docType),
+				Type:    docType,
 				Content: content,
 			}); vErr == nil {
 				globalMetrics.vendorCallsTotal.Add(1)
