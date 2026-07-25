@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"context"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -138,7 +139,7 @@ func (a *AuditLog) publish(ev AuditEvent) {
 	if err != nil {
 		return
 	}
-	_ = a.sink.WriteMessages(nil, kafka.Message{
+	_ = a.sink.WriteMessages(context.Background(), kafka.Message{
 		Key:   []byte(ev.ID),
 		Value: body,
 	})
