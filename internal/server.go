@@ -381,7 +381,9 @@ func newMuxWithServices(s *Services) *http.ServeMux {
 // newServer wires middleware and returns an *http.Server.
 func newServer(s *Services, addr string) *http.Server {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}))
+	secret, bypass := authMiddleware()
 	handler := correlationMiddleware(spanMiddleware(loggingMiddleware(logger, newMuxWithServices(s))))
+	handler = applyAuth(handler, secret, bypass)
 	return &http.Server{
 		Addr:              addr,
 		Handler:           handler,
